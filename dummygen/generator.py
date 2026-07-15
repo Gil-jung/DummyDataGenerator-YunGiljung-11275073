@@ -1,8 +1,11 @@
 import string
+from datetime import datetime, timedelta
 
 DEFAULT_MIN = 0
 DEFAULT_MAX = 1000
 DEFAULT_STRING_LENGTH = 8
+DEFAULT_DATE_START = "2020-01-01T00:00:00"
+DEFAULT_DATE_END = "2029-12-31T23:59:59"
 
 
 def generate_number(field_schema: dict, rng):
@@ -44,3 +47,14 @@ def generate_enum(field_schema: dict, rng):
     if weights is not None:
         return rng.choices(values, weights=weights, k=1)[0]
     return rng.choice(values)
+
+
+def generate_date(field_schema: dict, rng) -> str:
+    options = field_schema.get("x-generator", {})
+    start = datetime.fromisoformat(options.get("start", DEFAULT_DATE_START))
+    end = datetime.fromisoformat(options.get("end", DEFAULT_DATE_END))
+
+    delta_seconds = (end - start).total_seconds()
+    offset = rng.uniform(0, delta_seconds)
+    result = start + timedelta(seconds=offset)
+    return result.isoformat()
