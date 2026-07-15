@@ -1,0 +1,152 @@
+[
+  {
+    "orderId": "ORD-0000",
+    "orderDate": "2026-08-22T09:22:42.876741",
+    "status": "PAID",
+    "customer": {
+      "customerId": "CUST-0000",
+      "name": "이영희",
+      "phone": "010-0000-0000"
+    },
+    "items": [
+      {
+        "productName": "무선 마우스",
+        "quantity": 2,
+        "unitPrice": 19289
+      },
+      {
+        "productName": "모니터",
+        "quantity": 1,
+        "unitPrice": 89696
+      }
+    ],
+    "payment": {
+      "method": "TRANSFER",
+      "status": "FAILED"
+    },
+    "shipment": {
+      "trackingNo": "TRK-000000",
+      "status": "PREPARING"
+    }
+  },
+  {
+    "orderId": "ORD-0001",
+    "orderDate": "2026-08-04T12:42:51.282100",
+    "status": "PAID",
+    "customer": {
+      "customerId": "CUST-0001",
+      "name": "홍길동",
+      "phone": "010-0000-0000"
+    },
+    "items": [
+      {
+        "productName": "무선 마우스",
+        "quantity": 2,
+        "unitPrice": 67237
+      }
+    ],
+    "payment": {
+      "method": "TRANSFER",
+      "status": "COMPLETED"
+    },
+    "shipment": {
+      "trackingNo": "TRK-000001",
+      "status": "DELIVERED"
+    }
+  },
+  {
+    "orderId": "ORD-0002",
+    "orderDate": "2026-03-14T13:49:03.953216",
+    "status": "PENDING",
+    "customer": {
+      "customerId": "CUST-0002",
+      "name": "이영희",
+      "phone": "010-0000-0000"
+    },
+    "items": [
+      {
+        "productName": "키보드",
+        "quantity": 2,
+        "unitPrice": 59878
+      },
+      {
+        "productName": "모니터",
+        "quantity": 3,
+        "unitPrice": 1851
+      },
+      {
+        "productName": "무선 마우스",
+        "quantity": 4,
+        "unitPrice": 45597
+      }
+    ],
+    "payment": {
+      "method": "CASH",
+      "status": "COMPLETED"
+    },
+    "shipment": {
+      "trackingNo": "TRK-000002",
+      "status": "PREPARING"
+    }
+  },
+  {
+    "orderId": "ORD-0003",
+    "orderDate": "2026-12-16T09:11:10.487900",
+    "status": "CANCELLED",
+    "customer": {
+      "customerId": "CUST-0003",
+      "name": "홍길동",
+      "phone": "010-0000-0000"
+    },
+    "items": [
+      {
+        "productName": "키보드",
+        "quantity": 1,
+        "unitPrice": 48052
+      }
+    ],
+    "payment": {
+      "method": "CASH",
+      "status": "FAILED"
+    },
+    "shipment": {
+      "trackingNo": "TRK-000003",
+      "status": "SHIPPED"
+    }
+  },
+  {
+    "orderId": "ORD-0004",
+    "orderDate": "2026-10-22T14:26:36.418853",
+    "status": "PENDING",
+    "customer": {
+      "customerId": "CUST-0004",
+      "name": "김철수",
+      "phone": "010-0000-0000"
+    },
+    "items": [
+      {
+        "productName": "무선 마우스",
+        "quantity": 4,
+        "unitPrice": 11328
+      },
+      {
+        "productName": "모니터",
+        "quantity": 3,
+        "unitPrice": 83397
+      },
+      {
+        "productName": "모니터",
+        "quantity": 3,
+        "unitPrice": 76674
+      }
+    ],
+    "payment": {
+      "method": "CARD",
+      "status": "FAILED"
+    },
+    "shipment": {
+      "trackingNo": "TRK-000004",
+      "status": "PREPARING"
+    }
+  }
+]
