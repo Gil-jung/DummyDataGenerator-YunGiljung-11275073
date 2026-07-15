@@ -58,3 +58,45 @@ def generate_date(field_schema: dict, rng) -> str:
     offset = rng.uniform(0, delta_seconds)
     result = start + timedelta(seconds=offset)
     return result.isoformat()
+
+
+DEFAULT_MIN_ITEMS = 1
+DEFAULT_MAX_ITEMS = 3
+
+
+def generate_object(field_schema: dict, rng, seq: int = 0) -> dict:
+    properties = field_schema.get("properties", {})
+    return {
+        name: generate_field(sub_schema, rng, seq=seq)
+        for name, sub_schema in properties.items()
+    }
+
+
+def generate_array(field_schema: dict, rng, seq: int = 0) -> list:
+    item_schema = field_schema.get("items", {})
+    options = field_schema.get("x-generator", {})
+    min_items = options.get("minItems", DEFAULT_MIN_ITEMS)
+    max_items = options.get("maxItems", DEFAULT_MAX_ITEMS)
+    count = rng.randint(min_items, max_items)
+    return [generate_field(item_schema, rng, seq=seq) for _ in range(count)]
+
+
+def generate_field(field_schema: dict, rng, seq: int = 0):
+    field_type = field_schema.get("type")
+
+    if "enum" in field_schema:
+        return generate_enum(field_schema, rng)
+    if field_type == "object":
+        return generate_object(field_schema, rng, seq=seq)
+    if field_type == "array":
+        return generate_array(field_schema, rng, seq=seq)
+    if field_type in ("integer", "number"):
+        return generate_number(field_schema, rng)
+    if field_type == "string":
+        if field_schema.get("format") == "date-time":
+            return generate_date(field_schema, rng)
+        return generate_string(field_schema, rng, seq=seq)
+    if field_type == "boolean":
+        return generate_boolean(field_schema, rng)
+
+    raise ValueError(f"Unsupported field type: {field_type!r}")
