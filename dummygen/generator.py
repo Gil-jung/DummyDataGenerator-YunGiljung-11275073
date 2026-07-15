@@ -32,3 +32,15 @@ def generate_boolean(field_schema: dict, rng) -> bool:
     options = field_schema.get("x-generator", {})
     true_ratio = options.get("true_ratio", 0.5)
     return rng.random() < true_ratio
+
+
+def generate_enum(field_schema: dict, rng):
+    values = field_schema.get("enum", [])
+    if not values:
+        raise ValueError("enum field schema must define a non-empty 'enum' list")
+
+    options = field_schema.get("x-generator", {})
+    weights = options.get("weights")
+    if weights is not None:
+        return rng.choices(values, weights=weights, k=1)[0]
+    return rng.choice(values)
