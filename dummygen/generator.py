@@ -1,3 +1,4 @@
+import random
 import string
 from datetime import datetime, timedelta
 
@@ -100,3 +101,8 @@ def generate_field(field_schema: dict, rng, seq: int = 0):
         return generate_boolean(field_schema, rng)
 
     raise ValueError(f"Unsupported field type: {field_type!r}")
+
+
+def generate_records(schema: dict, count: int, seed=None) -> list:
+    rng = random.Random(seed)
+    return [generate_field(schema, rng, seq=i) for i in range(count)]
