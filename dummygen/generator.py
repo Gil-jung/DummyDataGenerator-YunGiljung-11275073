@@ -83,7 +83,21 @@ def generate_array(field_schema: dict, rng, seq: int = 0) -> list:
     return [generate_field(item_schema, rng, seq=seq) for _ in range(count)]
 
 
+_CUSTOM_GENERATORS = {}
+
+
+def register_generator(name: str, func) -> None:
+    _CUSTOM_GENERATORS[name] = func
+
+
 def generate_field(field_schema: dict, rng, seq: int = 0):
+    options = field_schema.get("x-generator", {})
+    if "custom" in options:
+        name = options["custom"]
+        if name not in _CUSTOM_GENERATORS:
+            raise ValueError(f"Unknown custom generator: {name!r}")
+        return _CUSTOM_GENERATORS[name](field_schema, rng, seq)
+
     field_type = field_schema.get("type")
 
     if "enum" in field_schema:
