@@ -1,5 +1,14 @@
 from dummygen.generator import _evaluate_sum_formula
 
+_TYPE_MAP = {
+    "string": str,
+    "integer": int,
+    "number": (int, float),
+    "boolean": bool,
+    "object": dict,
+    "array": list,
+}
+
 
 def validate_consistency(record: dict, schema: dict) -> list:
     errors = []
@@ -33,6 +42,32 @@ def _get_path(record: dict, field_path: str):
     for part in field_path.split("."):
         node = node[part]
     return node
+
+
+def validate_schema(value, schema: dict, path: str = "") -> list:
+    errors = []
+    field_type = schema.get("type")
+    label = path or "<root>"
+
+    if field_type in _TYPE_MAP and not isinstance(value, _TYPE_MAP[field_type]):
+        errors.append(f"{label}: expected type {field_type}, got {type(value).__name__}")
+        return errors
+
+    if field_type == "object":
+        for name in schema.get("required", []):
+            sub_path = f"{path}.{name}" if path else name
+            if name not in value:
+                errors.append(f"{sub_path}: required field missing")
+        for name, sub_schema in schema.get("properties", {}).items():
+            if name in value:
+                sub_path = f"{path}.{name}" if path else name
+                errors.extend(validate_schema(value[name], sub_schema, sub_path))
+    elif field_type == "array":
+        item_schema = schema.get("items", {})
+        for index, item in enumerate(value):
+            errors.extend(validate_schema(item, item_schema, f"{label}[{index}]"))
+
+    return errors
 
 
 def validate_uniqueness(records: list, field_path: str) -> list:
