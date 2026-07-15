@@ -26,3 +26,9 @@ def generate_string(field_schema: dict, rng, seq: int = 0) -> str:
 
     alphabet = string.ascii_letters + string.digits
     return "".join(rng.choice(alphabet) for _ in range(DEFAULT_STRING_LENGTH))
+
+
+def generate_boolean(field_schema: dict, rng) -> bool:
+    options = field_schema.get("x-generator", {})
+    true_ratio = options.get("true_ratio", 0.5)
+    return rng.random() < true_ratio
