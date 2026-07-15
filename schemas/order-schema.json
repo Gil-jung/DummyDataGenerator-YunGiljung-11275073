@@ -59,6 +59,10 @@
           "type": "string",
           "enum": ["CARD", "CASH", "TRANSFER"]
         },
+        "amount": {
+          "type": "integer",
+          "x-generator": { "derivedFrom": "items", "formula": "sum(quantity*unitPrice)" }
+        },
         "status": {
           "type": "string",
           "enum": ["COMPLETED", "PENDING", "FAILED"]

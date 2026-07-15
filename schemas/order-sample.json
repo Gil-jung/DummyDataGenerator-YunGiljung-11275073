@@ -22,6 +22,7 @@
     ],
     "payment": {
       "method": "TRANSFER",
+      "amount": 128274,
       "status": "FAILED"
     },
     "shipment": {
@@ -47,16 +48,17 @@
     ],
     "payment": {
       "method": "TRANSFER",
-      "status": "COMPLETED"
+      "amount": 134474,
+      "status": "FAILED"
     },
     "shipment": {
       "trackingNo": "TRK-000001",
-      "status": "DELIVERED"
+      "status": "PREPARING"
     }
   },
   {
     "orderId": "ORD-0002",
-    "orderDate": "2026-03-14T13:49:03.953216",
+    "orderDate": "2026-09-19T08:19:53.797101",
     "status": "PENDING",
     "customer": {
       "customerId": "CUST-0002",
@@ -65,33 +67,29 @@
     },
     "items": [
       {
-        "productName": "키보드",
-        "quantity": 2,
-        "unitPrice": 59878
-      },
-      {
-        "productName": "모니터",
-        "quantity": 3,
-        "unitPrice": 1851
-      },
-      {
         "productName": "무선 마우스",
         "quantity": 4,
-        "unitPrice": 45597
+        "unitPrice": 78236
+      },
+      {
+        "productName": "키보드",
+        "quantity": 1,
+        "unitPrice": 21926
       }
     ],
     "payment": {
-      "method": "CASH",
-      "status": "COMPLETED"
+      "method": "TRANSFER",
+      "amount": 334870,
+      "status": "PENDING"
     },
     "shipment": {
       "trackingNo": "TRK-000002",
-      "status": "PREPARING"
+      "status": "SHIPPED"
     }
   },
   {
     "orderId": "ORD-0003",
-    "orderDate": "2026-12-16T09:11:10.487900",
+    "orderDate": "2026-02-26T18:00:01.350585",
     "status": "CANCELLED",
     "customer": {
       "customerId": "CUST-0003",
@@ -107,41 +105,38 @@
     ],
     "payment": {
       "method": "CASH",
-      "status": "FAILED"
+      "amount": 48052,
+      "status": "PENDING"
     },
     "shipment": {
       "trackingNo": "TRK-000003",
-      "status": "SHIPPED"
+      "status": "PREPARING"
     }
   },
   {
     "orderId": "ORD-0004",
-    "orderDate": "2026-10-22T14:26:36.418853",
+    "orderDate": "2026-09-24T08:27:00.895444",
     "status": "PENDING",
     "customer": {
       "customerId": "CUST-0004",
-      "name": "김철수",
+      "name": "홍길동",
       "phone": "010-0000-0000"
     },
     "items": [
       {
         "productName": "무선 마우스",
-        "quantity": 4,
-        "unitPrice": 11328
+        "quantity": 5,
+        "unitPrice": 39427
       },
       {
         "productName": "모니터",
-        "quantity": 3,
-        "unitPrice": 83397
-      },
-      {
-        "productName": "모니터",
-        "quantity": 3,
-        "unitPrice": 76674
+        "quantity": 5,
+        "unitPrice": 48400
       }
     ],
     "payment": {
-      "method": "CARD",
+      "method": "TRANSFER",
+      "amount": 439135,
       "status": "FAILED"
     },
     "shipment": {

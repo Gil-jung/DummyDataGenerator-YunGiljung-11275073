@@ -31,3 +31,13 @@ def test_order_schema_ids_are_unique_across_records():
 
     order_ids = [r["orderId"] for r in records]
     assert len(order_ids) == len(set(order_ids))
+
+
+def test_order_schema_payment_amount_matches_items_sum():
+    schema = load_schema(SCHEMA_PATH)
+
+    records = generate_records(schema, count=10, seed=99)
+
+    for order in records:
+        expected = sum(item["quantity"] * item["unitPrice"] for item in order["items"])
+        assert order["payment"]["amount"] == expected
